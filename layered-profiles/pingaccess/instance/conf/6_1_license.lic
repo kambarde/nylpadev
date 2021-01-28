@@ -1,0 +1,12 @@
+ID=00071912
+Product=PingAccess
+Version=6.1
+EnforcementType=3
+Tier=Subscription
+IssueDate=2018-06-28
+ExpirationDate=2021-07-31
+DeploymentMethod=Traditional
+Organization=New York Life Insurance Company
+Name=PingAccess-6.1-Development
+SignCode=FF03
+Signature=302C021434737EAF20552B4045EE6FF58D7438EF31A601CF0214340E98E64971A517BFC963D6DE7690727B5A0776
