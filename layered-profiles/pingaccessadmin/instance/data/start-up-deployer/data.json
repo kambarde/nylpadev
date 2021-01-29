@@ -98,14 +98,14 @@
             {
                 "id": 2,
                 "name": "ENGINE",
-                "keyPairId": 2,
+                "keyPairId": 6,
                 "useServerCipherSuiteOrder": true,
                 "restartRequired": true
             },
             {
                 "id": 3,
                 "name": "AGENT",
-                "keyPairId": 3,
+                "keyPairId": 5,
                 "useServerCipherSuiteOrder": true,
                 "restartRequired": true
             },
