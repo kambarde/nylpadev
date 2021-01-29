@@ -19730,52 +19730,6 @@
         }
       },
       {
-        "className": "com.pingidentity.ps.pa.rule.WAMSessionRule",
-        "id": 63,
-        "name": "nylGeneric-Rule-KeepAlive_40_newyorklife_com",
-        "supportedDestinations": [
-          "Site",
-          "Agent"
-        ],
-        "configuration": {
-          "url": "https://mdl.authaa.newyorklife.com/wamgeneric40/authenticate",
-          "lifetime": "5",
-          "sessionCookieName": "SMSESSION-WAM",
-          "sessionCookieDomain": ".newyorklife.com",
-          "sessionCookiePath": "/",
-          "wamCookieName": "SMSESSION",
-          "wamCookieNameHttpOnly": false,
-          "wamCookieNameSecureCookie": false,
-          "errorResponseCode": 403,
-          "errorResponseStatusMsg": "Forbidden",
-          "errorResponseTemplateFile": "policy.error.page.template.html",
-          "errorResponseContentType": "text/html; charset=UTF-8"
-        }
-      },
-      {
-        "className": "com.pingidentity.ps.pa.rule.WAMSessionRule",
-        "id": 64,
-        "name": "nylGeneric-Rule-KeepAlive_20_newyorklife_com",
-        "supportedDestinations": [
-          "Site",
-          "Agent"
-        ],
-        "configuration": {
-          "url": "https://mdl.authaa.newyorklife.com/wamgeneric/authenticate",
-          "lifetime": "5",
-          "sessionCookieName": "SMSESSION-WAM",
-          "sessionCookieDomain": ".newyorklife.com",
-          "sessionCookiePath": "/",
-          "wamCookieName": "SMSESSION",
-          "wamCookieNameHttpOnly": false,
-          "wamCookieNameSecureCookie": false,
-          "errorResponseCode": 403,
-          "errorResponseStatusMsg": "Forbidden",
-          "errorResponseTemplateFile": "policy.error.page.template.html",
-          "errorResponseContentType": "text/html; charset=UTF-8"
-        }
-      },
-      {
         "className": "com.pingidentity.pa.policy.GroovyPolicyInterceptor",
         "id": 65,
         "name": "BOV Access Response",
