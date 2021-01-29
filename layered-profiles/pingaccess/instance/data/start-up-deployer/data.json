@@ -9705,8 +9705,8 @@
       "adminPassword": {
         "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQjNoMVZObXM5UEQybUZYZSJ9..-B5okf7v9zSQw04dX__alw.8QyD_Y9GhghvaUlRIui1Ug.zyBv-vJ_OVaaNxFqRfbfeg"
       },
-      "host": "mdl.pingfed.newyorklife.com",
-      "port": 9999,
+      "host": "internal-b375f5fb-pfapps-pfadmincur-847a-253407048.us-east-1.elb.amazonaws.com",
+      "port": 443,
       "basePath": null,
       "auditLevel": "OFF",
       "secure": true,
