@@ -3367,7 +3367,7 @@
           "Web": [
             {
               "type": "Rule",
-              "id": 61
+              "id": 63
             }
           ],
           "API": []
@@ -6780,35 +6780,35 @@
       "headerName": "X-Forwarded-Proto"
     },
     "httpsListeners": [
-      {
-        "id": 1,
-        "name": "ADMIN",
-        "keyPairId": 12,
-        "useServerCipherSuiteOrder": true,
-        "restartRequired": true
-      },
-      {
-        "id": 2,
-        "name": "ENGINE",
-        "keyPairId": 6,
-        "useServerCipherSuiteOrder": true,
-        "restartRequired": true
-      },
-      {
-        "id": 3,
-        "name": "AGENT",
-        "keyPairId": 5,
-        "useServerCipherSuiteOrder": true,
-        "restartRequired": true
-      },
-      {
-        "id": 4,
-        "name": "CONFIG QUERY",
-        "keyPairId": 11,
-        "useServerCipherSuiteOrder": true,
-        "restartRequired": false
-      }
-    ],
+            {
+                "id": 1,
+                "name": "ADMIN",
+                "keyPairId": 12,
+                "useServerCipherSuiteOrder": true,
+                "restartRequired": true
+            },
+            {
+                "id": 2,
+                "name": "ENGINE",
+                "keyPairId": 6,
+                "useServerCipherSuiteOrder": true,
+                "restartRequired": true
+            },
+            {
+                "id": 3,
+                "name": "AGENT",
+                "keyPairId": 5,
+                "useServerCipherSuiteOrder": true,
+                "restartRequired": true
+            },
+            {
+                "id": 4,
+                "name": "CONFIG QUERY",
+                "keyPairId": 11,
+                "useServerCipherSuiteOrder": true,
+                "restartRequired": false
+            }
+        ],
     "identityMappings": [
       {
         "className": "com.pingidentity.pa.identitymappings.HeaderIdentityMapping",
@@ -9486,7 +9486,7 @@
       "adminPassword": {
         "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiQjNoMVZObXM5UEQybUZYZSJ9..-B5okf7v9zSQw04dX__alw.8QyD_Y9GhghvaUlRIui1Ug.zyBv-vJ_OVaaNxFqRfbfeg"
       },
-      "host": "internal-b375f5fb-pfapps-pfadmincur-847a-253407048.us-east-1.elb.amazonaws.com",
+      "host": "dev.cpfconfsole.newyorklife.com",
       "port": 443,
       "basePath": null,
       "auditLevel": "OFF",
@@ -19727,6 +19727,52 @@
           "errorResponseTemplateFile": "policy.error.page.template.html",
           "errorResponseContentType": "text/html; charset=UTF-8",
           "groovyScript": "sdn = exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\nsdn2 = exc?.identity?.getAttributes()?.get(\"nylApplicationRole\")?.toString()\nsdn3 = exc?.identity?.getAttributes()?.get(\"isMemberOf\")?.asText()\nexc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- sdn : \" + sdn\nexc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- sdn2 : \" + sdn2\nexc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- sdn3 : \" + sdn3\n\nif (sdn3 && ( sdn3.contains(\"IAD.PolicyViewer\")))\n{   \n    exc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- Policy Name : Employee\"\n\texc?.request?.header?.add(\"Policy Name\", \"Employee\")\n  \n\tsubVar1=exc?.identity?.getAttributes()?.get(\"nylApplicationRole\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- nylApplicationRole : \" + subVar1\n\texc?.request?.header?.add(\"nylApplicationRole\", \"$subVar1\")\n\t\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- role : \" + subVar1\n\texc?.request?.header?.add(\"role\", \"$subVar1\")\n\t\n\tsubVar2=exc?.identity?.getAttributes()?.get(\"nylSAPUserId\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- NYLUID : \" + subVar2\n\texc?.request?.header?.add(\"NYLUID\", \"$subVar2\")\n\t\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- IAD_ROLE : Employee\" \n\texc?.request?.header?.add(\"IAD_ROLE\", \"Employee\")\n\t\n\tsubVar3=exc?.identity?.getAttributes()?.get(\"nsroledn\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- nsroledn : \" + subVar3\n\texc?.request?.header?.add(\"nsroledn\", \"$subVar3\")\n\t\n\tsubVar4=exc?.identity?.getAttributes()?.get(\"nylRole\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- : \" + subVar4\n\texc?.request?.header?.add(\"nylRole\", \"$subVar4\")\n  \n    subVar5=exc?.identity?.getAttributes()?.get(\"nylAuthID\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- SM_USER : \" + subVar5\n\texc?.request?.header?.add(\"SM_USER\", \"$subVar5\")\n      \n    subVar6=exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- SM_USERDN : \" + subVar6\n\texc?.request?.header?.add(\"SM_USERDN\", \"$subVar6\")   \n\t\n\tsubVar7=exc?.identity?.getAttributes()?.get(\"cn\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- cn : \" + subVar7\n\texc?.request?.header?.add(\"cn\", \"$subVar7\")\n  \n    subVar8=exc?.identity?.getAttributes()?.get(\"nylAuthID\")?.asText()\n\texc?.log.warn \"CCI: IAD.PolicyViewer Employees Policy - NEW --- USERID : \" + subVar8\n\texc?.request?.header?.add(\"USERID\", \"$subVar8\")\n\n\tanything()\n}\n\nelse if (sdn && ( sdn.endsWith(\"ou=people,o=bov,l=external,dc=newyorklife,dc=com\")))\n{\n    exc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD - NEW --- Policy Name : BOV\"\n\texc?.request?.header?.add(\"Policy Name\", \"BOV\")  \n  \n\tsubVar1=exc?.identity?.getAttributes()?.get(\"nylFirmID\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- sm_id : \" + subVar1\n\texc?.request?.header?.add(\"sm_id\", \"$subVar1\")\n\t\n\tsubVar2=exc?.identity?.getAttributes()?.get(\"nylFirmName\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- sm_name : \" + subVar2\n\texc?.request?.header?.add(\"sm_name\", \"$subVar2\")\n\t\n\tsubVar3=exc?.identity?.getAttributes()?.get(\"nylRole\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- sm_role : \" + subVar3\n\texc?.request?.header?.add(\"sm_role\", \"$subVar3\")\n\t\n\tsubVar4=exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- nyl_sunoneDN : \" + subVar4\n\texc?.request?.header?.add(\"nyl_sunoneDN\", \"$subVar4\")\n\t\t\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- IAD_ROLE : Broker\" \n\texc?.request?.header?.add(\"IAD_ROLE\", \"Broker\")\n\t\t\n\tsubVar5=exc?.identity?.getAttributes()?.get(\"nylSocialSecurityNumber\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- IAD_SSN : \" + subVar5\n\texc?.request?.header?.add(\"IAD_SSN\", \"$subVar5\")\n\t\t\n\tsubVar6=exc?.identity?.getAttributes()?.get(\"nylHashedIdentifier\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- hashssn : \" + subVar6\n\texc?.request?.header?.add(\"hashssn\", \"$subVar6\")\n\t\t\n\tsubVar7=exc?.identity?.getAttributes()?.get(\"cn\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- cn : \" + subVar7\n\texc?.request?.header?.add(\"cn\", \"$subVar7\")\n\t\t\n\tsubVar8=exc?.identity?.getAttributes()?.get(\"nylFirmName\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- nylFirmName : \" + subVar8\n\texc?.request?.header?.add(\"nylFirmName\", \"$subVar8\")\n\t\t\n\tsubVar9=exc?.identity?.getAttributes()?.get(\"st\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- st : \" + subVar9\n\texc?.request?.header?.add(\"st\", \"$subVar9\")\n\t\t\n\tsubVar10=exc?.identity?.getAttributes()?.get(\"nylRepInd\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- nylRepInd : \" + subVar10\n\texc?.request?.header?.add(\"nylRepInd\", \"$subVar10\")\n  \n    subVar12=exc?.identity?.getAttributes()?.get(\"uid\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- SM_USER : \" + subVar12\n\texc?.request?.header?.add(\"SM_USER\", \"$subVar12\")\n      \n    subVar13=exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- SM_USERDN : \" + subVar13\n\texc?.request?.header?.add(\"SM_USERDN\", \"$subVar13\")\n  \n    subVar14=exc?.identity?.getAttributes()?.get(\"uid\")?.asText()\n\texc?.log.warn \"CCI: Access for users in BOV branch - NEW NYLIM OBD --- USERID : \" + subVar14\n\texc?.request?.header?.add(\"USERID\", \"$subVar14\")\n\n\tanything()\t\n}\n\nelse if (sdn && ( sdn.endsWith(\"ou=people,o=clients,l=external,dc=newyorklife,dc=com\") ))  \n{\t\n\tif (sdn2 && (sdn2.contains(\"OAS.Customer\") || sdn2.contains(\"IAD.Broker\") || sdn2.contains(\"EDJ.Broker\") || sdn2.contains(\"MERRILL.Broker\") || sdn2.contains(\"CHASE.Broker\")))\n\t{\n        exc?.log.warn \"CCI: OAS.Customer --- Policy Name : ClientCustomer\"\n\t    exc?.request?.header?.add(\"Policy Name\", \"ClientCustomer\") \n\t\n    \tsubVar1=exc?.identity?.getAttributes()?.get(\"nylApplicationRole\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylApplicationRole : \" + subVar1\n\t\texc?.request?.header?.add(\"nylApplicationRole\", \"$subVar1\")\n\t\t\n\t\texc?.log.warn \"CCI: OAS.Customer --- role : \" + subVar1\n\t\texc?.request?.header?.add(\"role\", \"$subVar1\")\n      \n\t\tsubVar2=exc?.identity?.getAttributes()?.get(\"nylSAPUserId\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- NYLUID : \" + subVar2\n\t\texc?.request?.header?.add(\"NYLUID\", \"$subVar2\")\n\t\t\n\t\tsubVar3=exc?.identity?.getAttributes()?.get(\"nylClientID\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylClientId : \" + subVar3\n\t\texc?.request?.header?.add(\"nylClientId\", \"$subVar3\")\n\t\t\n\t\tsubVar4=exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nyl_sunoneDN : \" + subVar4\n\t\texc?.request?.header?.add(\"nyl_sunoneDN\", \"$subVar4\")\n\t\t\n\t\texc?.log.warn \"CCI: OAS.Customer --- IAD_ROLE : Broker\" \n\t\texc?.request?.header?.add(\"IAD_ROLE\", \"Broker\")\n\t\t\n\t\tsubVar5=exc?.identity?.getAttributes()?.get(\"c\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- IAD_SSN : \" + subVar5\n\t\texc?.request?.header?.add(\"IAD_SSN\", \"$subVar5\")\n\t\t\n\t\tsubVar6=exc?.identity?.getAttributes()?.get(\"nylHashedIdentifier\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- hashssn : \" + subVar6\n\t\texc?.request?.header?.add(\"hashssn\", \"$subVar6\")\n\t\t\n\t\tsubVar7=exc?.identity?.getAttributes()?.get(\"nylRole\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylRole : \" + subVar7\n\t\texc?.request?.header?.add(\"nylRole\", \"$subVar7\")\n\t\t\n\t\tsubVar8=exc?.identity?.getAttributes()?.get(\"cn\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- cn : \" + subVar8\n\t\texc?.request?.header?.add(\"cn\", \"$subVar8\")\n\t\t\n\t\tsubVar9=exc?.identity?.getAttributes()?.get(\"nylFirmName\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylFirmName : \" + subVar9\n\t\texc?.request?.header?.add(\"nylFirmName\", \"$subVar9\")\n\t\t\n\t\tsubVar10=exc?.identity?.getAttributes()?.get(\"st\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- st : \" + subVar10\n\t\texc?.request?.header?.add(\"st\", \"$subVar10\")\n\t\t\n\t\tsubVar11=exc?.identity?.getAttributes()?.get(\"nylRepInd\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylRepInd : \" + subVar11\n\t\texc?.request?.header?.add(\"nylRepInd\", \"$subVar11\")\n      \n        subVar12=exc?.identity?.getAttributes()?.get(\"nylEagleInd\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- SM_USER : \" + subVar12\n\t\texc?.request?.header?.add(\"SM_USER\", \"$subVar12\")\n      \n        subVar13=exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- SM_USERDN : \" + subVar13\n\t\texc?.request?.header?.add(\"SM_USERDN\", \"$subVar13\")\n      \n        subVar14=exc?.identity?.getAttributes()?.get(\"nylEagleInd\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- USERID : \" + subVar14\n\t\texc?.request?.header?.add(\"USERID\", \"$subVar14\")\n\n\t\tanything()\n\t}\t\n}\n\nelse if (sdn && ( sdn.endsWith(\"ou=people,o=invext,l=external,dc=newyorklife,dc=com\")))  \n{\t\n\tif (sdn2 && (sdn2.contains(\"IAD.Broker\") || sdn2.contains(\"EDJ.Broker\") || sdn2.contains(\"MERRILL.Broker\") || sdn2.contains(\"CHASE.Broker\")))\n\t{\n\t    exc?.log.warn \"CCI: OAS.Customer --- Policy Name : Broker\"\n\t    exc?.request?.header?.add(\"Policy Name\", \"Broker\")\n\t\n\t\tsubVar1=exc?.identity?.getAttributes()?.get(\"nylApplicationRole\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylApplicationRole : \" + subVar1\n\t\texc?.request?.header?.add(\"nylApplicationRole\", \"$subVar1\")\n\t\t\n\t\texc?.log.warn \"CCI: OAS.Customer --- role : \" + subVar1\n\t\texc?.request?.header?.add(\"role\", \"$subVar1\")\n\t\t\n\t\tsubVar2=exc?.identity?.getAttributes()?.get(\"nylSAPUserId\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- NYLUID : \" + subVar2\n\t\texc?.request?.header?.add(\"NYLUID\", \"$subVar2\")\n\t\t\n\t\tsubVar3=exc?.identity?.getAttributes()?.get(\"nylClientID\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylClientId : \" + subVar3\n\t\texc?.request?.header?.add(\"nylClientId\", \"$subVar3\")\n\t\t\n\t\tsubVar4=exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nyl_sunoneDN : \" + subVar4\n\t\texc?.request?.header?.add(\"nyl_sunoneDN\", \"$subVar4\")\n\t\t\n\t\texc?.log.warn \"CCI: OAS.Customer --- IAD_ROLE : Broker\" \n\t\texc?.request?.header?.add(\"IAD_ROLE\", \"Broker\")\n\t\t\n\t\tsubVar5=exc?.identity?.getAttributes()?.get(\"c\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- IAD_SSN : \" + subVar5\n\t\texc?.request?.header?.add(\"IAD_SSN\", \"$subVar5\")\n\t\t\n\t\tsubVar6=exc?.identity?.getAttributes()?.get(\"nylHashedIdentifier\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- hashssn : \" + subVar6\n\t\texc?.request?.header?.add(\"hashssn\", \"$subVar6\")\n\t\t\n\t\tsubVar7=exc?.identity?.getAttributes()?.get(\"nylRole\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylRole : \" + subVar7\n\t\texc?.request?.header?.add(\"nylRole\", \"$subVar7\")\n\t\t\n\t\tsubVar8=exc?.identity?.getAttributes()?.get(\"cn\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- cn : \" + subVar8\n\t\texc?.request?.header?.add(\"cn\", \"$subVar8\")\n\t\t\n\t\tsubVar9=exc?.identity?.getAttributes()?.get(\"nylFirmName\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylFirmName : \" + subVar9\n\t\texc?.request?.header?.add(\"nylFirmName\", \"$subVar9\")\n\t\t\n\t\tsubVar10=exc?.identity?.getAttributes()?.get(\"st\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- st : \" + subVar10\n\t\texc?.request?.header?.add(\"st\", \"$subVar10\")\n\t\t\n\t\tsubVar11=exc?.identity?.getAttributes()?.get(\"nylRepInd\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- nylRepInd : \" + subVar11\n\t\texc?.request?.header?.add(\"nylRepInd\", \"$subVar11\")\n      \n        subVar12=exc?.identity?.getAttributes()?.get(\"mail\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- SM_USER : \" + subVar12\n\t\texc?.request?.header?.add(\"SM_USER\", \"$subVar12\")\n      \n        subVar13=exc?.identity?.getAttributes()?.get(\"EntryDN\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- SM_USERDN : \" + subVar13\n\t\texc?.request?.header?.add(\"SM_USERDN\", \"$subVar13\")\n      \n        subVar14=exc?.identity?.getAttributes()?.get(\"mail\")?.asText()\n\t\texc?.log.warn \"CCI: OAS.Customer --- USERID : \" + subVar14\n\t\texc?.request?.header?.add(\"USERID\", \"$subVar14\")\n\n\t\tanything()\n\t}\t\n}\nelse\n{\n\t fail()\n}"
+        }
+      },
+      {
+        "className": "com.pingidentity.ps.pa.rule.WAMSessionRule",
+        "id": 63,
+        "name": "nylGeneric-Rule-KeepAlive_40_newyorklife_com",
+        "supportedDestinations": [
+          "Site",
+          "Agent"
+        ],
+        "configuration": {
+          "url": "https://mdl.authaa.newyorklife.com/wamgeneric40/authenticate",
+          "lifetime": "5",
+          "sessionCookieName": "SMSESSION-WAM",
+          "sessionCookieDomain": ".newyorklife.com",
+          "sessionCookiePath": "/",
+          "wamCookieName": "SMSESSION",
+          "wamCookieNameHttpOnly": false,
+          "wamCookieNameSecureCookie": false,
+          "errorResponseCode": 403,
+          "errorResponseStatusMsg": "Forbidden",
+          "errorResponseTemplateFile": "policy.error.page.template.html",
+          "errorResponseContentType": "text/html; charset=UTF-8"
+        }
+      },
+      {
+        "className": "com.pingidentity.ps.pa.rule.WAMSessionRule",
+        "id": 64,
+        "name": "nylGeneric-Rule-KeepAlive_20_newyorklife_com",
+        "supportedDestinations": [
+          "Site",
+          "Agent"
+        ],
+        "configuration": {
+          "url": "https://mdl.authaa.newyorklife.com/wamgeneric/authenticate",
+          "lifetime": "5",
+          "sessionCookieName": "SMSESSION-WAM",
+          "sessionCookieDomain": ".newyorklife.com",
+          "sessionCookiePath": "/",
+          "wamCookieName": "SMSESSION",
+          "wamCookieNameHttpOnly": false,
+          "wamCookieNameSecureCookie": false,
+          "errorResponseCode": 403,
+          "errorResponseStatusMsg": "Forbidden",
+          "errorResponseTemplateFile": "policy.error.page.template.html",
+          "errorResponseContentType": "text/html; charset=UTF-8"
         }
       },
       {
