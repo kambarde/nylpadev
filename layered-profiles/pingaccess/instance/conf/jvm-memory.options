@@ -5,12 +5,14 @@
 #
 
 #Minimum heap size
--Xms512m
+-Xms1g
 #Maximum heap size
--Xmx512m
+-Xmx1g
 #Minimum size for the Young Gen space
--XX:NewSize=256m
+-XX:NewSize=1024m
 #Maximum size for the Young Gen space
--XX:MaxNewSize=256m
+-XX:MaxNewSize=1024m
 #Use the parallel garbage collector
 -XX:+UseParallelGC
+-XX:ParallelGCThreads=4
+#-javaagent:/opt/appdynamics/app-agent/java-oracle/javaagent.jar -Dappdynamics.http.proxyHost=zproxy.newyorklife.com -Dappdynamics.http.proxyPort=9480 -Dappdynamics.agent.uniqueHostId=if21m01pa -Dappdynamics.agent.applicationName=INFRA-PACCESS-MDL  -Dappdynamics.agent.tierName=PACCESS-AppServer  -Dappdynamics.agent.nodeName=if21m01pa-paccess
