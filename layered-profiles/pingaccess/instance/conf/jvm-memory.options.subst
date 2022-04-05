@@ -1,0 +1,6 @@
+#Minimum heap size
+-Xms${HEAP_MIN}
+#Maximum heap size
+-Xmx${HEAP_MAX}
+-XX:+UseG1GC
+${NR_AGENT}

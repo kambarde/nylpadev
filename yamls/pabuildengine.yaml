@@ -1,0 +1,109 @@
+apiVersion: v1
+data:
+  OPERATIONAL_MODE: CLUSTERED_ENGINE
+  PA_ADMIN_PRIVATE_HOSTNAME: PA_ADM_SVC_NAME
+  PING_IDENTITY_ACCEPT_EULA: "YES"
+  #VERBOSE: "true"
+  HEAP_MIN: 4g
+  HEAP_MAX: 6g
+  NR_AGENT: "-javaagent:/opt/out/instance/conf/newrelic.jar"
+  PA_CONFIG_QUERY_KEYPAIR_ID: "9"
+  PA_ADM_NAME: "pingaccess-admin"
+  NR_KEY: NR_LIC
+
+
+  #Base Profile - Pulls config relevant to conf and data directories
+  SERVER_PROFILE_URL: https://068bceabb129402e0e007dd6908ec23380da17ba@git.nylcloud.com/ECS/nylpadev
+  SERVER_PROFILE_PATH: layered-profiles/pingaccess
+kind: ConfigMap
+metadata:
+  name: pingaccess-engine-environment-variables-PA_SVC_VERSION
+  namespace: "paapps"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    role: pingaccess
+    tier: engine
+  name: pingaccess-PA_SVC_VERSION
+  namespace: "paapps"
+spec:
+  ports:
+  - name: https
+    port: 3000
+  selector:
+    role: pingaccess
+    tier: engine
+    version: "PA_SVC_VERSION"
+  type: NodePort  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    role: pingaccess
+    tier: engine
+  name: pingaccess-PA_SVC_VERSION
+  namespace: "paapps"
+spec:
+  replicas: PA_ENGINES
+  selector:
+    matchLabels:
+      role: pingaccess
+      tier: engine
+      version: "PA_SVC_VERSION"
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate    
+  template:
+    metadata:
+      labels:
+        role: pingaccess
+        tier: engine
+        version: "PA_SVC_VERSION"
+      name: pingaccess-PA_SVC_VERSION
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: pingaccess-engine-environment-variables-PA_SVC_VERSION
+            #- secretRef:
+            #name: devops-secret
+            #optional: true    
+        image: pingidentity/pingaccess:6.3.2-edge
+        livenessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+          initialDelaySeconds: 100
+          periodSeconds: 30
+        name: pingaccess
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -c
+            - /opt/liveness.sh
+          periodSeconds: 10
+        resources:
+          limits:
+            cpu: "1"
+            memory: 8G
+          requests:
+            cpu: "1"
+            memory: 8G
+  
+      #initContainers:
+      #- command:
+        #- sh
+        #- -c
+        #- until curl --connect-timeout 1 --silent -k https://PA_ADM_SVC_NAME:9000 ; do echo waiting for admin ; sleep 3 ; done
+        #image: curlimages/curl:latest
+        #name: init

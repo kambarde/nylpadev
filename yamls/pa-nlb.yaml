@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pingaccess-admin-nlb
+  namespace: PA_NS
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: PA_ADM_ALB_CERT_ARN
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: "ELBSecurityPolicy-2016-08"
+spec:
+  ports:
+  - name: https
+    port: 443
+    targetPort: 9000
+    protocol: TCP
+  type: LoadBalancer
+  selector:
+    role: pingaccess
+    tier: console
+    version: PA_SVC_VERSION
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pingaccess-engine-nlb
+  namespace: PA_NS
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: PA_ENG_ALB_CERT_ARN
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+    service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: "ELBSecurityPolicy-2016-08"
+spec:
+  ports:
+  - name: https
+    port: 443
+    targetPort: 3000
+    protocol: TCP
+  type: LoadBalancer
+  selector:
+    role: pingaccess
+    tier: engine
+    version: PA_SVC_VERSION

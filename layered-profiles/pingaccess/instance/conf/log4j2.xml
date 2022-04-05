@@ -25,7 +25,7 @@
         <!-- To use, uncomment the appenderRef under "com.pingidentity" Logger -->
 
         <Console name="CONSOLE" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
+            <PatternLayout pattern="%d{ABSOLUTE} %-5p [%c{1}] %m{nolookups}%n" />
         </Console>
 
         <!-- ================================= -->
@@ -48,9 +48,9 @@
                     in "com.pingidentity" async logger.
                 -->
                 <!--
-                <pattern>%d{ISO8601} %5p [%X{exchangeId}] %c:%L - %m%n</pattern>
+                <pattern>%d{ISO8601} %5p [%X{exchangeId}] %c:%L - %m{nolookups}%n</pattern>
                 -->
-                <pattern>%d{ISO8601} %5p [%X{exchangeId}] %c - %m%n</pattern>
+                <pattern>%d{ISO8601} %5p [%X{exchangeId}] %c - %m{nolookups}%n</pattern>
             </PatternLayout>
             <Policies>
                 <SizeBasedTriggeringPolicy size="100000 KB"/>
@@ -647,7 +647,7 @@
         <Socket name="SYSLOG" host="localhost" port="514" protocol="UDP">
             <PingSyslogLayout facility="LOCAL0">
                 <PatternLayout>
-                    <pattern>%d{ABSOLUTE} %5p %c:%L - %m%n</pattern>
+                    <pattern>%d{ABSOLUTE} %5p %c:%L - %m{nolookups}%n</pattern>
                 </PatternLayout>
             </PingSyslogLayout>
         </Socket>
@@ -656,10 +656,10 @@
 
     <Loggers>
         <!-- PingAccess Loggers-->
-        <AsyncLogger name="com.pingidentity" level="INFO" additivity="false" includeLocation="false">
+        <AsyncLogger name="com.pingidentity" level="TRACE" additivity="false" includeLocation="false">
             <AppenderRef ref="File"/>
-            <!--<AppenderRef ref="CONSOLE" />-->
-            <!--<AppenderRef ref="SYSLOG" />-->
+            <AppenderRef ref="CONSOLE" />
+            <AppenderRef ref="SYSLOG" />
         </AsyncLogger>
 
         <!-- Logs details/ordering of service proxies -->
@@ -694,7 +694,6 @@
             <!--<AppenderRef ref="AgentAuditLog-PostgreSQL"/>-->
             <!--<AppenderRef ref="AgentAudit2Splunk"/>-->
         </Logger>
-
         <!--Third-party dependencies-->
         <AsyncLogger name="com.netflix" level="WARN" additivity="false" includeLocation="false">
             <AppenderRef ref="File"/>
@@ -746,8 +745,9 @@
         </AsyncLogger>
 
         <!-- Root Logger-->
-        <AsyncRoot level="DEBUG" includeLocation="false">
+        <AsyncRoot level="INFO" includeLocation="false">
             <AppenderRef ref="File"/>
+            <AppenderRef ref="CONSOLE" />
         </AsyncRoot>
     </Loggers>
 </Configuration>

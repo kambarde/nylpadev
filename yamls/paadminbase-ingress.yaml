@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "paadmin-base-ingress"
+  namespace: "pfapps"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/backend-protocol: HTTPS
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTPS
+    alb.ingress.kubernetes.io/healthcheck-path: /*
+    alb.ingress.kubernetes.io/target-group-attributes: stickiness.enabled=true,stickiness.lb_cookie.duration_seconds=3600
+    #alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:492478557038:certificate/4a1e4e44-15be-4565-8e00-4c257e29f39b
+    #alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:994774272157:certificate/6ac6ca03-e728-4ff4-80aa-7f8b362d470e
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:994774272157:certificate/03ecc387-a870-468d-a22d-8df39b85b33b
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-2016-08
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+  labels:
+    app: paadmin-base-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: "pingaccess-admin"
+              servicePort: 9000
